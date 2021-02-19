@@ -1,0 +1,33 @@
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('{{ id }}'));
+
+// 指定图表的配置项和数据
+var option = {
+    title: {
+        text: "{{ title }}"
+    },
+    tooltip: {},
+    legend: {
+        //需要显示的实例标签信息
+        top: "5%",
+        data: {{ instanceid_name }}
+    },
+    xAxis: {
+        //x轴坐标信息时间
+        data: {{ date }}
+    },
+    yAxis: { },
+    series: [
+        {% for k,v in data.items() %}
+            {
+                name: "{{ k }}",
+                type: 'line',
+                data: {{ v }},
+                symbol: 'none',  //取消折点圆圈
+            },
+        {% endfor %}
+    ]
+};
+
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);

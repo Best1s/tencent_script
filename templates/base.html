@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>{{title}}监控数据</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style type="text/css">
+        .main {
+            position: absolute;
+            left: 200px;
+            right: 200px;
+            height: 100%;
+            display: inline;
+        }
+
+        .div1 {
+            width: auto;
+            height: 350px;
+            position: relative;
+        }
+
+        .div2 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -750px;
+            margin-top: -200px;
+            width: 1200px;
+            height: 400px;
+            /*line-height: 400px;
+            font-size: 36px;*/
+            text-align: center;
+        }
+
+        .div3 {
+            text-align: left;
+        }
+
+        img {
+            padding-top: 80px;
+        }
+
+        body {
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/dist/echarts.min.js"></script>
+</head>
+<body>
+    
+    
+    <div class="div1">
+        <div class="div2">
+            <p style="font-size: 200%">云服务器数量：{{cvmNum}}</p>
+            <p style="font-size: 200%">云数据库MySql数量：{{cdbNum}}</p>
+            <!--    <p>云数据库Redis数量：{{redisNum}}</p>-->
+            {% for id in js_ids %}
+            <div id="{{id}}" style="width: 1500px;height:700px;"></div>
+            {% endfor %}
+            {% for js in js_paths %}
+            <script type="text/javascript" src="{{js}}"></script>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
